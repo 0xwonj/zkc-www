@@ -1,2 +1,4 @@
 .DS_Store
 site/output/
+site/.trunk-lock/
+/.playwright-cli
