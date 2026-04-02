@@ -1,0 +1,15 @@
+[package]
+name = "protocol-ir-research-archive"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+console_error_panic_hook = "0.1"
+leptos = { version = "0.8", features = ["csr"] }
+leptos_meta = "0.8"
+leptos_router = "0.8"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "z"

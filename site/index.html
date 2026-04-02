@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <meta
+      name="description"
+      content="Protocol IR research archive for working papers, implementation notes, and roadmap documents."
+    />
+    <meta name="theme-color" content="#fafafa" />
+    <script>
+      (function () {
+        var media = window.matchMedia("(prefers-color-scheme: dark)");
+
+        function applyTheme(isDark) {
+          var theme = isDark ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", isDark ? "#0a0a0c" : "#fafafa");
+        }
+
+        applyTheme(media.matches);
+
+        if (typeof media.addEventListener === "function") {
+          media.addEventListener("change", function (event) {
+            applyTheme(event.matches);
+          });
+        } else if (typeof media.addListener === "function") {
+          media.addListener(function (event) {
+            applyTheme(event.matches);
+          });
+        }
+      })();
+    </script>
+    <link data-trunk rel="copy-dir" href="public" />
+    <link data-trunk rel="scss" href="style/main.scss" />
+    <link
+      data-trunk
+      rel="rust"
+      data-bin="protocol-ir-research-archive"
+      data-wasm-opt="z"
+    />
+    <title>ZK Compiler Research</title>
+  </head>
+  <body></body>
+</html>
