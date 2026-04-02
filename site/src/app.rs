@@ -25,8 +25,6 @@ pub fn App() -> impl IntoView {
                 <Routes fallback=|| view! { <NotFoundPage /> }>
                     <Route path=path!("/") view=HomePage />
                     <Route path=path!("/protocol-ir") view=ProtocolIrPage />
-                    // Keep the legacy archive path as a compatibility alias.
-                    <Route path=path!("/archive") view=ProtocolIrPage />
                 </Routes>
             </SiteShell>
         </Router>
