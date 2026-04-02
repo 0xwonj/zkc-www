@@ -1127,6 +1127,7 @@ dependencies = [
  "leptos",
  "leptos_meta",
  "leptos_router",
+ "web-sys",
 ]
 
 [[package]]

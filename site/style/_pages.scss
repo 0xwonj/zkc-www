@@ -13,10 +13,6 @@ html:has(.paper) .site-main {
   text-align: center;
 }
 
-.paper-header-home {
-  margin-bottom: 6px;
-}
-
 .paper-project {
   margin: 0 0 12px;
   color: var(--ink);
@@ -24,11 +20,6 @@ html:has(.paper) .site-main {
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.08;
-}
-
-.paper-project-home {
-  margin-bottom: 0;
-  font-size: clamp(24px, 4vw, 34px);
 }
 
 .paper-title {
@@ -58,11 +49,6 @@ html:has(.paper) .site-main {
   color: var(--ink);
   font-size: 14px;
   font-weight: 400;
-}
-
-.paper-heading-label {
-  font-style: italic;
-  font-weight: 300;
 }
 
 .paper-heading-marker {

@@ -13,24 +13,36 @@
     <meta name="theme-color" content="#fafafa" />
     <script>
       (function () {
+        var storageKey = "zkc-theme-preference";
         var media = window.matchMedia("(prefers-color-scheme: dark)");
 
-        function applyTheme(isDark) {
-          var theme = isDark ? "dark" : "light";
+        function applyTheme(theme) {
           document.documentElement.setAttribute("data-theme", theme);
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute("content", isDark ? "#0a0a0c" : "#fafafa");
+          if (meta) meta.setAttribute("content", theme === "dark" ? "#0a0a0c" : "#fafafa");
         }
 
-        applyTheme(media.matches);
+        function getStoredTheme() {
+          try {
+            return window.localStorage.getItem(storageKey);
+          } catch (_) {
+            return null;
+          }
+        }
+
+        applyTheme(getStoredTheme() || (media.matches ? "dark" : "light"));
 
         if (typeof media.addEventListener === "function") {
           media.addEventListener("change", function (event) {
-            applyTheme(event.matches);
+            if (!getStoredTheme()) {
+              applyTheme(event.matches ? "dark" : "light");
+            }
           });
         } else if (typeof media.addListener === "function") {
           media.addListener(function (event) {
-            applyTheme(event.matches);
+            if (!getStoredTheme()) {
+              applyTheme(event.matches ? "dark" : "light");
+            }
           });
         }
       })();
@@ -43,7 +55,7 @@
       data-bin="protocol-ir-research-archive"
       data-wasm-opt="z"
     />
-    <title>ZK Compiler Research</title>
+    <title>ZKC</title>
   </head>
   <body></body>
 </html>

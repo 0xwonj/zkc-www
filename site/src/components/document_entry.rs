@@ -28,10 +28,10 @@ pub fn DocumentEntry(doc: DocEntry, #[prop(optional)] compact: bool) -> impl Int
                         <span class="paper-toc-num">{format!("{}.", doc.sort_order)}</span>
                         <span class="paper-toc-main">
                             <span class="paper-toc-label">{doc.title}</span>
+                            <span class="paper-toc-dots" />
+                            <span class="paper-toc-desc">"HackMD"</span>
                             <span class="paper-toc-meta">{doc.subtitle}</span>
                         </span>
-                        <span class="paper-toc-dots" />
-                        <span class="paper-toc-desc">"HackMD"</span>
                     </a>
                 }
                     .into_any(),
@@ -40,10 +40,10 @@ pub fn DocumentEntry(doc: DocEntry, #[prop(optional)] compact: bool) -> impl Int
                         <span class="paper-toc-num">{format!("{}.", doc.sort_order)}</span>
                         <span class="paper-toc-main">
                             <span class="paper-toc-label">{doc.title}</span>
+                            <span class="paper-toc-dots" />
+                            <span class="paper-toc-desc">"Pending"</span>
                             <span class="paper-toc-meta">{doc.subtitle}</span>
                         </span>
-                        <span class="paper-toc-dots" />
-                        <span class="paper-toc-desc">"Pending"</span>
                     </div>
                 }
                     .into_any(),

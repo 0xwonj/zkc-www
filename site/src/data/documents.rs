@@ -11,19 +11,39 @@ pub struct DocEntry {
     pub sort_order: u8,
 }
 
-pub const PROTOCOL_IR_REPOSITORY_URL: &str = "https://example.com/protocol-ir-repository";
-
-const DOCS: [DocEntry; 7] = [
+const DOCS: [DocEntry; 8] = [
+    DocEntry {
+        slug: "grant-proposal",
+        title: "Grant Proposal",
+        subtitle: "Protocol IR and compiler infrastructure for zero-knowledge proving",
+        category: "Project",
+        status: "Grant proposal",
+        summary: "Frames the project scope, public-good motivation, milestones, and validation criteria for building compiler infrastructure for zero-knowledge proving around Protocol IR.",
+        hackmd_url: Some("https://hackmd.io/@wonj/grant-proposal"),
+        featured: false,
+        sort_order: 1,
+    },
+    DocEntry {
+        slug: "system-and-scope",
+        title: "System and Scope",
+        subtitle: "Project architecture and current research boundary",
+        category: "Overview",
+        status: "Canonical project overview",
+        summary: "Defines the larger ZK compiler architecture, separates source, arithmetic, protocol, verifier, and execution layers, and fixes the current project scope at protocol instantiation before kernelization.",
+        hackmd_url: Some("https://hackmd.io/@wonj/system-and-scope"),
+        featured: true,
+        sort_order: 2,
+    },
     DocEntry {
         slug: "protocol-ir",
         title: "Protocol IR",
-        subtitle: "Verified protocol instantiation before kernelization",
+        subtitle: "The semantic lock-in layer between arithmetic structure and execution",
         category: "Core Thesis",
         status: "Canonical research document",
         summary: "Defines Protocol IR as the semantic lock-in layer between arithmetic structure and execution structure, with explicit protocol closure before execution lowering.",
         hackmd_url: Some("https://hackmd.io/@wonj/protocol-ir"),
         featured: true,
-        sort_order: 1,
+        sort_order: 3,
     },
     DocEntry {
         slug: "implementation-spec",
@@ -34,28 +54,6 @@ const DOCS: [DocEntry; 7] = [
         summary: "Specifies the MLIR object model, pass structure, verifier surface, and backend boundary that realize the current Protocol IR thesis.",
         hackmd_url: Some("https://hackmd.io/@wonj/mlir-spec"),
         featured: true,
-        sort_order: 2,
-    },
-    DocEntry {
-        slug: "extensions-and-roadmap",
-        title: "Extensions and Roadmap",
-        subtitle: "Direct continuation of Protocol IR and the path to a native prover compiler",
-        category: "Roadmap",
-        status: "Canonical extension-and-roadmap document",
-        summary: "Prioritizes the direct next steps after the current core contribution, including LLZK-backed views, specialization, semantic enrichment, and later execution lowering.",
-        hackmd_url: Some("https://hackmd.io/@wonj/extensions-and-roadmap"),
-        featured: true,
-        sort_order: 3,
-    },
-    DocEntry {
-        slug: "future-research",
-        title: "Future Research",
-        subtitle: "Beyond Protocol IR: DAG kernels, semantic-aware proving, and new protocol families",
-        category: "Future Work",
-        status: "Curated future research document",
-        summary: "Maps the broader research space beyond the first paper, including distributed lowering, new protocol families, autotuning, and semantic-aware proving.",
-        hackmd_url: Some("https://hackmd.io/@wonj/future-research"),
-        featured: false,
         sort_order: 4,
     },
     DocEntry {
@@ -70,15 +68,26 @@ const DOCS: [DocEntry; 7] = [
         sort_order: 5,
     },
     DocEntry {
-        slug: "grant-proposal",
-        title: "Grant Proposal",
-        subtitle: "Protocol IR: verified protocol instantiation before kernelization",
-        category: "Project",
-        status: "Grant proposal",
-        summary: "Frames the project scope, public-good motivation, execution milestones, and validation criteria for a six-month Protocol IR effort.",
-        hackmd_url: Some("https://hackmd.io/@wonj/grant-proposal"),
-        featured: false,
+        slug: "extensions-and-roadmap",
+        title: "Extensions and Roadmap",
+        subtitle: "Direct continuation of Protocol IR and the path to a native prover compiler",
+        category: "Roadmap",
+        status: "Canonical extension-and-roadmap document",
+        summary: "Prioritizes the direct next steps after the current core contribution, including LLZK-backed views, specialization, semantic enrichment, and later execution lowering.",
+        hackmd_url: Some("https://hackmd.io/@wonj/extensions-and-roadmap"),
+        featured: true,
         sort_order: 6,
+    },
+    DocEntry {
+        slug: "future-research",
+        title: "Future Research",
+        subtitle: "Beyond Protocol IR: DAG kernels, semantic-aware proving, and new protocol families",
+        category: "Future Work",
+        status: "Curated future research document",
+        summary: "Maps the broader research space beyond the first paper, including distributed lowering, new protocol families, autotuning, and semantic-aware proving.",
+        hackmd_url: Some("https://hackmd.io/@wonj/future-research"),
+        featured: false,
+        sort_order: 7,
     },
     DocEntry {
         slug: "references",
@@ -89,12 +98,14 @@ const DOCS: [DocEntry; 7] = [
         summary: "Collects the compiler, ZK, Fiat–Shamir, PL, and verification references that anchor the Protocol IR research program.",
         hackmd_url: Some("https://hackmd.io/@wonj/references"),
         featured: false,
-        sort_order: 7,
+        sort_order: 8,
     },
 ];
 
 pub fn all_documents() -> Vec<DocEntry> {
-    DOCS.to_vec()
+    let mut docs = DOCS.to_vec();
+    docs.sort_by_key(|doc| doc.sort_order);
+    docs
 }
 
 pub fn protocol_ir_documents() -> Vec<DocEntry> {

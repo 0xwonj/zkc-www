@@ -2,17 +2,38 @@ use leptos::prelude::*;
 
 #[component]
 pub fn ProtocolIrDiagram() -> impl IntoView {
+    const FRAME_WIDTH: i32 = 978;
+    const FRAME_HEIGHT: i32 = 358;
+    const INPUT_X: i32 = 36;
+    const INPUT_WIDTH: i32 = 220;
+    const INPUT_TEXT_X: i32 = 58;
+    const CORE_X: i32 = 334;
+    const CORE_WIDTH: i32 = 104;
+    const CLOSED_X: i32 = 474;
+    const CLOSED_WIDTH: i32 = 116;
+    const OPT_X: i32 = 626;
+    const OPT_WIDTH: i32 = 70;
+    const OUTPUT_X: i32 = 756;
+    const OUTPUT_WIDTH: i32 = 176;
+    const OUTPUT_TEXT_X: i32 = OUTPUT_X + 20;
+    const INPUT_CENTER_X: i32 = INPUT_X + INPUT_WIDTH / 2;
+    const STAGE_CENTER_X: i32 = (CORE_X + OPT_X + OPT_WIDTH) / 2;
+    const OUTPUT_CENTER_X: i32 = OUTPUT_X + OUTPUT_WIDTH / 2;
+    const CORE_CENTER_X: i32 = CORE_X + CORE_WIDTH / 2;
+    const CLOSED_CENTER_X: i32 = CLOSED_X + CLOSED_WIDTH / 2;
+    const OPT_CENTER_X: i32 = OPT_X + OPT_WIDTH / 2;
+
     view! {
         <figure class="protocol-diagram-shell">
             <svg
                 class="protocol-diagram-svg"
-                viewBox="0 0 980 430"
+                viewBox="0 0 980 360"
                 role="img"
                 aria-labelledby="protocol-diagram-title protocol-diagram-desc"
             >
                 <title id="protocol-diagram-title">"Protocol IR compiler flow"</title>
                 <desc id="protocol-diagram-desc">
-                    "A diagram showing protocol intent, arithmetic objects, and security requirements flowing into Protocol IR stages core, closed, and opt. The closed form makes proof surface, transcript trace, and verifier relation explicit before backend lowering."
+                    "A diagram showing protocol intent, arithmetic objects, and security requirements converging into Protocol IR stages core, closed, and opt. The closed stage is defined by the semantic triple of proof surface, transcript trace, and verifier relation, then flows to library and kernel backend paths."
                 </desc>
 
                 <defs>
@@ -29,195 +50,184 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                     </marker>
                 </defs>
 
-                <rect class="diagram-frame" x="1" y="1" width="978" height="428" rx="18"></rect>
+                <rect
+                    class="diagram-frame"
+                    x="1"
+                    y="1"
+                    width=FRAME_WIDTH
+                    height=FRAME_HEIGHT
+                    rx="18"
+                ></rect>
 
-                <text class="diagram-section-label" x="32" y="34">
+                <text class="diagram-section-label" x=INPUT_CENTER_X y="40">
                     "Inputs"
                 </text>
-                <text class="diagram-section-label" x="286" y="34">
+                <text class="diagram-section-label" x=STAGE_CENTER_X y="40">
                     "Protocol stages"
                 </text>
-                <text class="diagram-section-label" x="756" y="34">
+                <text class="diagram-section-label" x=OUTPUT_CENTER_X y="40">
                     "Outputs"
                 </text>
 
                 <g class="diagram-node">
-                    <rect class="diagram-node-box" x="32" y="58" width="186" height="54" rx="10"></rect>
-                    <text class="diagram-node-title" x="50" y="81">
+                    <rect
+                        class="diagram-node-box"
+                        x=INPUT_X
+                        y="82"
+                        width=INPUT_WIDTH
+                        height="50"
+                        rx="12"
+                    ></rect>
+                    <text class="diagram-node-title" x=INPUT_TEXT_X y="103">
                         "protocol intent"
                     </text>
-                    <text class="diagram-node-meta" x="50" y="100">
+                    <text class="diagram-node-meta" x=INPUT_TEXT_X y="121">
                         "DSL, builder API"
                     </text>
                 </g>
 
                 <g class="diagram-node">
-                    <rect class="diagram-node-box" x="32" y="145" width="186" height="54" rx="10"></rect>
-                    <text class="diagram-node-title" x="50" y="168">
+                    <rect
+                        class="diagram-node-box"
+                        x=INPUT_X
+                        y="155"
+                        width=INPUT_WIDTH
+                        height="50"
+                        rx="12"
+                    ></rect>
+                    <text class="diagram-node-title" x=INPUT_TEXT_X y="176">
                         "arithmetic object"
                     </text>
-                    <text class="diagram-node-meta" x="50" y="187">
+                    <text class="diagram-node-meta" x=INPUT_TEXT_X y="194">
                         "R1CS, Plonkish, AIR, LLZK"
                     </text>
                 </g>
 
                 <g class="diagram-node">
-                    <rect class="diagram-node-box" x="32" y="232" width="186" height="54" rx="10"></rect>
-                    <text class="diagram-node-title" x="50" y="255">
+                    <rect
+                        class="diagram-node-box"
+                        x=INPUT_X
+                        y="228"
+                        width=INPUT_WIDTH
+                        height="50"
+                        rx="12"
+                    ></rect>
+                    <text class="diagram-node-title" x=INPUT_TEXT_X y="249">
                         "security profile"
                     </text>
-                    <text class="diagram-node-meta" x="50" y="274">
+                    <text class="diagram-node-meta" x=INPUT_TEXT_X y="267">
                         "FS profile, assumptions"
                     </text>
                 </g>
 
-                <path class="diagram-connector" d="M218 85 H252 V165"></path>
-                <path class="diagram-connector" d="M218 172 H252 V165"></path>
-                <path class="diagram-connector" d="M218 259 H252 V165"></path>
+                <path class="diagram-connector" d="M256 107 H286 V180"></path>
+                <path class="diagram-connector" d="M256 180 H286"></path>
+                <path class="diagram-connector" d="M256 253 H286 V180"></path>
                 <path
                     class="diagram-flow"
-                    d="M252 165 H286"
+                    d="M286 180 H334"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
 
                 <g class="diagram-stage">
-                    <rect class="diagram-stage-box" x="286" y="58" width="126" height="58" rx="12"></rect>
-                    <text class="diagram-stage-title" x="349" y="87">
+                    <rect
+                        class="diagram-stage-box"
+                        x=CORE_X
+                        y="152"
+                        width=CORE_WIDTH
+                        height="56"
+                        rx="14"
+                    ></rect>
+                    <text class="diagram-stage-title" x=CORE_CENTER_X y="180">
                         "core"
                     </text>
                 </g>
 
                 <path
                     class="diagram-flow"
-                    d="M412 87 H442"
+                    d="M438 180 H474"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
 
                 <g class="diagram-stage diagram-stage-closed">
-                    <rect class="diagram-stage-box" x="442" y="58" width="126" height="58" rx="12"></rect>
-                    <text class="diagram-stage-title" x="505" y="87">
+                    <rect
+                        class="diagram-stage-box"
+                        x=CLOSED_X
+                        y="152"
+                        width=CLOSED_WIDTH
+                        height="56"
+                        rx="14"
+                    ></rect>
+                    <text class="diagram-stage-title" x=CLOSED_CENTER_X y="180">
                         "closed"
                     </text>
                 </g>
 
+                <text class="diagram-formula" x=STAGE_CENTER_X y="308">
+                    "closed = (proof surface, transcript trace, verifier relation)"
+                </text>
+
                 <path
                     class="diagram-flow"
-                    d="M568 87 H598"
+                    d="M590 180 H626"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
 
                 <g class="diagram-stage">
-                    <rect class="diagram-stage-box" x="598" y="58" width="126" height="58" rx="12"></rect>
-                    <text class="diagram-stage-title" x="661" y="87">
+                    <rect
+                        class="diagram-stage-box"
+                        x=OPT_X
+                        y="152"
+                        width=OPT_WIDTH
+                        height="56"
+                        rx="14"
+                    ></rect>
+                    <text class="diagram-stage-title" x=OPT_CENTER_X y="180">
                         "opt"
                     </text>
                 </g>
 
-                <path class="diagram-connector" d="M349 116 V150"></path>
-                <path class="diagram-connector" d="M505 116 V150"></path>
-                <path class="diagram-connector" d="M661 116 V150"></path>
-
-                <g class="diagram-panel-group">
-                    <rect class="diagram-panel" x="270" y="150" width="470" height="210" rx="16"></rect>
-                    <text class="diagram-panel-title" x="294" y="180">
-                        "Closed protocol semantics"
-                    </text>
-
-                    <g class="diagram-card">
-                        <rect class="diagram-card-box" x="290" y="202" width="132" height="86" rx="12"></rect>
-                        <text class="diagram-card-title" x="306" y="225">
-                            "proof surface"
-                        </text>
-                        <text class="diagram-card-meta" x="306" y="246">
-                            "commitments"
-                        </text>
-                        <text class="diagram-card-meta" x="306" y="264">
-                            "openings"
-                        </text>
-                        <text class="diagram-card-meta" x="306" y="282">
-                            "query bundles"
-                        </text>
-                    </g>
-
-                    <g class="diagram-card">
-                        <rect class="diagram-card-box" x="439" y="202" width="132" height="86" rx="12"></rect>
-                        <text class="diagram-card-title" x="455" y="225">
-                            "transcript trace"
-                        </text>
-                        <text class="diagram-card-meta" x="455" y="246">
-                            "absorbs"
-                        </text>
-                        <text class="diagram-card-meta" x="455" y="264">
-                            "challenge schedule"
-                        </text>
-                        <text class="diagram-card-meta" x="455" y="282">
-                            "domain separation"
-                        </text>
-                    </g>
-
-                    <g class="diagram-card">
-                        <rect class="diagram-card-box" x="588" y="202" width="132" height="86" rx="12"></rect>
-                        <text class="diagram-card-title" x="604" y="225">
-                            "verifier relation"
-                        </text>
-                        <text class="diagram-card-meta" x="604" y="246">
-                            "algebraic checks"
-                        </text>
-                        <text class="diagram-card-meta" x="604" y="264">
-                            "opening checks"
-                        </text>
-                        <text class="diagram-card-meta" x="604" y="282">
-                            "Merkle / FRI"
-                        </text>
-                    </g>
-
-                    <rect class="diagram-pill" x="292" y="312" width="82" height="28" rx="14"></rect>
-                    <text class="diagram-pill-text" x="333" y="330">
-                        "proof ABI"
-                    </text>
-
-                    <rect class="diagram-pill" x="389" y="312" width="94" height="28" rx="14"></rect>
-                    <text class="diagram-pill-text" x="436" y="330">
-                        "Fiat-Shamir"
-                    </text>
-
-                    <rect class="diagram-pill" x="498" y="312" width="112" height="28" rx="14"></rect>
-                    <text class="diagram-pill-text" x="554" y="330">
-                        "verifier replay"
-                    </text>
-
-                    <rect class="diagram-pill" x="625" y="312" width="94" height="28" rx="14"></rect>
-                    <text class="diagram-pill-text" x="672" y="330">
-                        "obligations"
-                    </text>
-                </g>
-
-                <path class="diagram-connector" d="M724 87 H744 V154"></path>
-                <path class="diagram-connector" d="M744 154 V250"></path>
+                <path class="diagram-connector" d="M696 180 H730"></path>
+                <path class="diagram-connector" d="M730 180 V134"></path>
+                <path class="diagram-connector" d="M730 180 V222"></path>
                 <path
                     class="diagram-flow"
-                    d="M744 154 H756"
+                    d="M730 134 H756"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
                 <path
                     class="diagram-flow"
-                    d="M744 250 H756"
+                    d="M730 222 H756"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
 
                 <g class="diagram-output">
-                    <rect class="diagram-output-box" x="756" y="122" width="192" height="64" rx="12"></rect>
-                    <text class="diagram-node-title" x="774" y="147">
+                    <rect
+                        class="diagram-output-box"
+                        x=OUTPUT_X
+                        y="100"
+                        width=OUTPUT_WIDTH
+                        height="68"
+                        rx="12"
+                    ></rect>
+                    <text class="diagram-node-title" x=OUTPUT_TEXT_X y="124">
                         "LibraryBackend path"
                     </text>
-                    <text class="diagram-node-meta" x="774" y="167">
+                    <text class="diagram-node-meta" x=OUTPUT_TEXT_X y="144">
                         "e.g. Plonky3"
                     </text>
                 </g>
 
                 <g class="diagram-output">
-                    <rect class="diagram-output-box" x="756" y="218" width="192" height="64" rx="12"></rect>
-                    <text class="diagram-node-title" x="774" y="253">
+                    <rect
+                        class="diagram-output-box"
+                        x=OUTPUT_X
+                        y="188"
+                        width=OUTPUT_WIDTH
+                        height="68"
+                        rx="12"
+                    ></rect>
+                    <text class="diagram-node-title" x=OUTPUT_TEXT_X y="212">
                         "KernelBackend path"
                     </text>
                 </g>

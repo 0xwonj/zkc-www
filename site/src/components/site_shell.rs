@@ -1,3 +1,4 @@
+use crate::components::ThemeToggle;
 use leptos::{children::Children, prelude::*};
 use leptos_router::components::A;
 
@@ -11,16 +12,11 @@ pub fn SiteShell(children: Children) -> impl IntoView {
         <div class="site-shell">
             <nav class="site-nav" aria-label="Primary">
                 <A href="/" exact=true attr:class="nav-brand">
-                    "zk compiler"
+                    "ZKC"
                 </A>
 
-                <div class="nav-links">
-                    <A href="/" exact=true attr:class="nav-link">
-                        "Home"
-                    </A>
-                    <A href="/protocol-ir" exact=true attr:class="nav-link">
-                        "Protocol IR"
-                    </A>
+                <div class="nav-actions">
+                    <ThemeToggle />
                 </div>
             </nav>
 
