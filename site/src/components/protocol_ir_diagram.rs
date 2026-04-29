@@ -4,24 +4,30 @@ use leptos::prelude::*;
 pub fn ProtocolIrDiagram() -> impl IntoView {
     const FRAME_WIDTH: i32 = 978;
     const FRAME_HEIGHT: i32 = 358;
+
     const INPUT_X: i32 = 36;
     const INPUT_WIDTH: i32 = 220;
     const INPUT_TEXT_X: i32 = 58;
-    const CORE_X: i32 = 334;
-    const CORE_WIDTH: i32 = 104;
-    const CLOSED_X: i32 = 474;
-    const CLOSED_WIDTH: i32 = 116;
-    const OPT_X: i32 = 626;
-    const OPT_WIDTH: i32 = 70;
+    const INPUT_CENTER_X: i32 = INPUT_X + INPUT_WIDTH / 2;
+
+    const PCORE_X: i32 = 320;
+    const PCORE_WIDTH: i32 = 100;
+    const PCORE_CENTER_X: i32 = PCORE_X + PCORE_WIDTH / 2;
+
+    const PCLOSED_X: i32 = 480;
+    const PCLOSED_WIDTH: i32 = 130;
+    const PCLOSED_CENTER_X: i32 = PCLOSED_X + PCLOSED_WIDTH / 2;
+
+    const C_X: i32 = 624;
+    const C_WIDTH: i32 = 56;
+    const C_CENTER_X: i32 = C_X + C_WIDTH / 2;
+
+    const STAGE_CENTER_X: i32 = (PCORE_X + C_X + C_WIDTH) / 2;
+
     const OUTPUT_X: i32 = 756;
     const OUTPUT_WIDTH: i32 = 176;
     const OUTPUT_TEXT_X: i32 = OUTPUT_X + 20;
-    const INPUT_CENTER_X: i32 = INPUT_X + INPUT_WIDTH / 2;
-    const STAGE_CENTER_X: i32 = (CORE_X + OPT_X + OPT_WIDTH) / 2;
     const OUTPUT_CENTER_X: i32 = OUTPUT_X + OUTPUT_WIDTH / 2;
-    const CORE_CENTER_X: i32 = CORE_X + CORE_WIDTH / 2;
-    const CLOSED_CENTER_X: i32 = CLOSED_X + CLOSED_WIDTH / 2;
-    const OPT_CENTER_X: i32 = OPT_X + OPT_WIDTH / 2;
 
     view! {
         <figure class="protocol-diagram-shell">
@@ -31,9 +37,9 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                 role="img"
                 aria-labelledby="protocol-diagram-title protocol-diagram-desc"
             >
-                <title id="protocol-diagram-title">"Protocol IR compiler flow"</title>
+                <title id="protocol-diagram-title">"Protocol IR closure flow"</title>
                 <desc id="protocol-diagram-desc">
-                    "A diagram showing protocol intent, arithmetic objects, and security requirements converging into Protocol IR stages core, closed, and opt. The closed stage is defined by the semantic triple of proof surface, transcript trace, and verifier relation, then flows to library and kernel backend paths."
+                    "A diagram showing relation payload, protocol profile, and backend witness flowing into Protocol IR. The open source P_core is sealed by close into the closed artifact P_closed with an attached certificate C. The verifier face is read as P_obs = (Sigma, T, V). The sealed pair flows to backend realization and audit and verification companion tracks."
                 </desc>
 
                 <defs>
@@ -63,10 +69,10 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                     "Inputs"
                 </text>
                 <text class="diagram-section-label" x=STAGE_CENTER_X y="40">
-                    "Protocol stages"
+                    "Closure"
                 </text>
                 <text class="diagram-section-label" x=OUTPUT_CENTER_X y="40">
-                    "Outputs"
+                    "Companion tracks"
                 </text>
 
                 <g class="diagram-node">
@@ -79,10 +85,10 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                         rx="12"
                     ></rect>
                     <text class="diagram-node-title" x=INPUT_TEXT_X y="103">
-                        "protocol intent"
+                        "relation payload"
                     </text>
                     <text class="diagram-node-meta" x=INPUT_TEXT_X y="121">
-                        "DSL, builder API"
+                        "AIR, R1CS, Plonkish, LLZK"
                     </text>
                 </g>
 
@@ -96,10 +102,10 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                         rx="12"
                     ></rect>
                     <text class="diagram-node-title" x=INPUT_TEXT_X y="176">
-                        "arithmetic object"
+                        "profile Π, scope ρ"
                     </text>
                     <text class="diagram-node-meta" x=INPUT_TEXT_X y="194">
-                        "R1CS, Plonkish, AIR, LLZK"
+                        "θ, σ, m, ν, κ"
                     </text>
                 </g>
 
@@ -113,10 +119,10 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                         rx="12"
                     ></rect>
                     <text class="diagram-node-title" x=INPUT_TEXT_X y="249">
-                        "security profile"
+                        "backend witness B"
                     </text>
                     <text class="diagram-node-meta" x=INPUT_TEXT_X y="267">
-                        "FS profile, assumptions"
+                        "B_κ, B_scheme, B_abi"
                     </text>
                 </g>
 
@@ -125,79 +131,78 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                 <path class="diagram-connector" d="M256 253 H286 V180"></path>
                 <path
                     class="diagram-flow"
-                    d="M286 180 H334"
+                    d="M286 180 H320"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
 
                 <g class="diagram-stage">
                     <rect
                         class="diagram-stage-box"
-                        x=CORE_X
+                        x=PCORE_X
                         y="152"
-                        width=CORE_WIDTH
+                        width=PCORE_WIDTH
                         height="56"
                         rx="14"
                     ></rect>
-                    <text class="diagram-stage-title" x=CORE_CENTER_X y="180">
-                        "core"
+                    <text class="diagram-stage-title" x=PCORE_CENTER_X y="180">
+                        "P_core"
                     </text>
                 </g>
 
                 <path
                     class="diagram-flow"
-                    d="M438 180 H474"
+                    d="M420 180 H480"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
 
                 <g class="diagram-stage diagram-stage-closed">
                     <rect
                         class="diagram-stage-box"
-                        x=CLOSED_X
+                        x=PCLOSED_X
                         y="152"
-                        width=CLOSED_WIDTH
+                        width=PCLOSED_WIDTH
                         height="56"
                         rx="14"
                     ></rect>
-                    <text class="diagram-stage-title" x=CLOSED_CENTER_X y="180">
-                        "closed"
+                    <text class="diagram-stage-title" x=PCLOSED_CENTER_X y="180">
+                        "P_closed"
                     </text>
                 </g>
 
-                <text class="diagram-formula" x=STAGE_CENTER_X y="308">
-                    "closed = (proof surface, transcript trace, verifier relation)"
-                </text>
+                <path class="diagram-connector" d="M610 180 H624"></path>
 
-                <path
-                    class="diagram-flow"
-                    d="M590 180 H626"
-                    marker-end="url(#protocol-diagram-arrow)"
-                ></path>
-
-                <g class="diagram-stage">
+                <g class="diagram-stage diagram-stage-closed">
                     <rect
                         class="diagram-stage-box"
-                        x=OPT_X
-                        y="152"
-                        width=OPT_WIDTH
-                        height="56"
-                        rx="14"
+                        x=C_X
+                        y="160"
+                        width=C_WIDTH
+                        height="40"
+                        rx="10"
                     ></rect>
-                    <text class="diagram-stage-title" x=OPT_CENTER_X y="180">
-                        "opt"
+                    <text class="diagram-stage-title" x=C_CENTER_X y="180">
+                        "C"
                     </text>
                 </g>
 
-                <path class="diagram-connector" d="M696 180 H730"></path>
-                <path class="diagram-connector" d="M730 180 V134"></path>
-                <path class="diagram-connector" d="M730 180 V222"></path>
+                <text class="diagram-formula" x=STAGE_CENTER_X y="302">
+                    "close: P_core × Π × ρ × B → (P_closed, C)"
+                </text>
+                <text class="diagram-formula" x=STAGE_CENTER_X y="322">
+                    "P_obs = obs(P_closed) = (Σ, T, V)"
+                </text>
+
+                <path class="diagram-connector" d="M680 180 H720"></path>
+                <path class="diagram-connector" d="M720 180 V134"></path>
+                <path class="diagram-connector" d="M720 180 V222"></path>
                 <path
                     class="diagram-flow"
-                    d="M730 134 H756"
+                    d="M720 134 H756"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
                 <path
                     class="diagram-flow"
-                    d="M730 222 H756"
+                    d="M720 222 H756"
                     marker-end="url(#protocol-diagram-arrow)"
                 ></path>
 
@@ -211,10 +216,13 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                         rx="12"
                     ></rect>
                     <text class="diagram-node-title" x=OUTPUT_TEXT_X y="124">
-                        "LibraryBackend path"
+                        "Backend realization"
                     </text>
-                    <text class="diagram-node-meta" x=OUTPUT_TEXT_X y="144">
-                        "e.g. Plonky3"
+                    <text class="diagram-node-meta" x=OUTPUT_TEXT_X y="142">
+                        "lowering, codegen,"
+                    </text>
+                    <text class="diagram-node-meta" x=OUTPUT_TEXT_X y="158">
+                        "runtime, MLIR carriers"
                     </text>
                 </g>
 
@@ -228,7 +236,13 @@ pub fn ProtocolIrDiagram() -> impl IntoView {
                         rx="12"
                     ></rect>
                     <text class="diagram-node-title" x=OUTPUT_TEXT_X y="212">
-                        "KernelBackend path"
+                        "Audit & verification"
+                    </text>
+                    <text class="diagram-node-meta" x=OUTPUT_TEXT_X y="230">
+                        "certificate consumers,"
+                    </text>
+                    <text class="diagram-node-meta" x=OUTPUT_TEXT_X y="246">
+                        "mechanized proofs"
                     </text>
                 </g>
             </svg>

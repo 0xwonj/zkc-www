@@ -14,21 +14,31 @@ pub fn ProtocolIrPage() -> impl IntoView {
             <article class="paper" data-reveal>
                 <PageHeader
                     title="Protocol IR"
-                    subtitle="The semantic lock-in layer between arithmetic structure and execution"
+                    subtitle="A typed protocol-object layer for zero-knowledge proofs"
                 />
 
                 <hr class="paper-rule" />
 
                 <section class="paper-section">
-                    <SectionHeading title="Overview" />
+                    <SectionHeading title="Abstract" />
                     <p class="paper-body">
-                        "Protocol IR is the compiler layer at which an arithmetic object becomes a closed, verifier-explicit proof protocol. It is not another arithmetic IR, and it is not an execution IR. Arithmetic IR describes the algebraic object being proved; execution IR describes how a fixed prover is realized efficiently on concrete hardware. Protocol IR sits between them and fixes the protocol-facing structure that must remain visible and analyzable: which proof objects exist, how the transcript is staged, when challenges are derived, how the verifier reads the proof back, and which checks define acceptance."
+                        "Protocol IR is a protocol-object layer between arithmetization and backend realization. It names an open protocol source, checks when that source can be sealed, and records what the sealed artifact is allowed to claim. The initial active core targets public-coin protocols closed into non-interactive arguments by a strong Fiat-Shamir boundary, with ROM-style closure as the mainline; other oracle models require an explicit supporting theorem entry."
                     </p>
                     <p class="paper-body">
-                        "The semantic center of this layer is a closed protocol, understood as the triple `(proof surface, transcript trace, verifier relation)`. The proof surface defines the external proof contract, the transcript trace records how protocol objects and challenges are bound, and the verifier relation states the exact acceptance condition. Making these three components first-class lets the compiler check closure, preserve protocol meaning under rewrites, and treat proof ABI, transcript discipline, and verifier structure as semantic commitments rather than backend conventions. In this framing, Fiat-Shamir belongs at the protocol layer as part of protocol closure, not as backend plumbing."
+                        "The framework distinguishes an open source `P_core`, a closed non-interactive artifact `P_closed`, the verifier-observable face `P_obs = (Σ, T, V)` read from that artifact, and a certificate `C` attached to `P_closed`. Closure is the typed boundary at which live public-coin challenges become transcript-derived values: it succeeds only when six obligations — schedule integrity, public-input binding, namespace separation, construction discipline, theorem dispatch, and budget — discharge together. `C` then records the closure evidence, exported claims, scheme-conditioned rows, and any visible non-claims that travel with the artifact."
                     </p>
                     <p class="paper-body">
-                        "The stage structure follows `core -> closed -> opt`. `core` is an unresolved protocol skeleton with pending structure and obligations; `closed` is the first verifier-explicit, cryptographically complete form; `opt` is a semantics-preserving reorganization of that closed protocol. The methodological consequence is that protocol instantiation must be completed before kernelization, so later library or kernel backends consume a stable protocol object rather than silently participating in protocol design."
+                        "Three reader-facing responsibilities organize the layer: open sources must be "
+                        <strong>"describable"</strong>
+                        " through typed components, "
+                        <strong>"composable"</strong>
+                        " through typed operators with explicit separation between structural wiring and theorem-dependent claim lifting, and "
+                        <strong>"verifiable"</strong>
+                        " at the closure boundary where Fiat-Shamir admissibility, theorem dispatch, and certificate accounting line up. Lowering, code generation, runtime scheduling, MLIR carriers, and mechanized proof artifacts are companion tracks that consume `P_closed` and `C` as a read-only contract."
+                    </p>
+                    <p class="paper-body">
+                        <span class="paper-keyword-label">"Keywords."</span>
+                        " Fiat-Shamir transformation, interactive oracle proofs, protocol composition, MLIR."
                     </p>
                 </section>
 
@@ -53,7 +63,7 @@ pub fn ProtocolIrPage() -> impl IntoView {
                             <span class="paper-toc-num">"1."</span>
                             <span class="paper-toc-label">"Protocol IR Repository"</span>
                             <span class="paper-toc-dots" />
-                            <span class="paper-toc-desc">"Example link"</span>
+                            <span class="paper-toc-desc">"Placeholder"</span>
                         </a>
                     </nav>
                 </section>
